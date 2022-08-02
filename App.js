@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Tickle Ball</Text>
+      <Text>Tickle Ball Branch Test Ak</Text>
       <StatusBar style="auto" />
     </View>
   );
