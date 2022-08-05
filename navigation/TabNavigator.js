@@ -2,6 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../screens/HomePage";
 import { Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import SinglesDoubles from "../screens/singlesDoubles";
+import TeamName from "../screens/teamName";
 
 const TabNavigator = () => {
     const ProfileScreen = () => {
@@ -22,9 +24,11 @@ const TabNavigator = () => {
     
                 if (route.name === 'Home') {
                     iconName = focused ? 'home' : 'home';
-                } else if (route.name === 'Settings') {
+                } else if (route.name === 'Play') {
                     iconName = focused ? 'sliders' : 'sliders';
                 } else if (route.name === 'Profile') {
+                    iconName = focused ? 'user-circle-o' : 'user-circle-o';
+                } else if (route.name === 'TeamName') {
                     iconName = focused ? 'user-circle-o' : 'user-circle-o';
                 }
 
@@ -37,8 +41,9 @@ const TabNavigator = () => {
             })}
         >
             <Tab.Screen name='Home' component={HomePage} />
-            <Tab.Screen name='Settings' component={HomePage} />
+            <Tab.Screen name='Play' component={SinglesDoubles} />
             <Tab.Screen name='Profile' component={ProfileScreen} />
+            <Tab.Screen name='TeamName' component={TeamName} />
         </Tab.Navigator>
     );
 };
