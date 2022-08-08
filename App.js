@@ -1,12 +1,13 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigator from './navigation/TabNavigator';
+import StackNavigator from './navigation/StackNavigator';
 
 export default function App() {
   return (
       <NavigationContainer>
-        <TabNavigator/>
         <StatusBar style="auto"/>
+        <StackNavigator/>
       </NavigationContainer>
   );
 };
