@@ -1,44 +1,49 @@
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useState } from 'react';
 
-const SinglesScoreKeeper = () => {
+const DoublesScoreKeeper = () => {
   const [count, setCount] = useState(0);
   const [secondCount, setSecondCount] = useState(0);
-  // const [serve, setServe] = useState(1);
+  const [serve, setServe] = useState(1);
+  const [teamName, setTeamName] = useState('');
+  const [secondTeamName, setSecondTeamName] = useState('');
 
   const onPress = () => setCount(prevCount => prevCount + 1);
   const onPressSecond = () => setSecondCount(prevCount => prevCount + 1);
-  // const onServe = () => setServe(prevCount => prevCount + 1);
+  const onServe = () => setServe(prevCount => prevCount + 1);
+  
 
-  // const resetServe = () => {
-  //   setServe(1);
-  // }
+  const resetServe = () => {
+    setServe(1);
+  }
 
   const resetScoring = () => {
     setCount(0);
     setSecondCount(0);
-    // setServe(1);
+    setServe(1);
+    setTeamName('');
+    setSecondTeamName('');
   }
 
   if (count < 11) {
     count + 1
   } else if (count > 11) {
-    Alert.alert('Congrats, you are victorious!')
+    Alert.alert('Congrats, ' + teamName + ' you are victorious!')
     resetScoring();
   }
 
   if (secondCount < 11) {
     secondCount + 1
   } else if (secondCount > 11) {
-    Alert.alert('Congrats, you are victorious!')
+    Alert.alert('Congrats, '+ secondTeamName + ' you are victorious!')
     resetScoring();
   }
 
-  // if (serve === 1) {
-  //   serve + 1
-  // } else if (serve > 2) {
-  //   resetServe();
-  // }
+  if (serve === 1) {
+    serve + 1
+  } else if (serve > 2) {
+    resetServe();
+  }
   
 
   return(
@@ -48,6 +53,8 @@ const SinglesScoreKeeper = () => {
         style={styles.textarea}
         placeholder="Enter Team Name"
         placeholderTextColor='#003f5c'
+        onChangeText={(teamName) =>setTeamName(teamName)}
+        value={teamName}
         >
         </TextInput>
         <View style={styles.line}></View>
@@ -61,7 +68,7 @@ const SinglesScoreKeeper = () => {
           <Text style={styles.serve}>
             Serve: 
               <Text style={styles.exactServe}>
-                1/1
+                {serve}/2
               </Text>
           </Text>
         </View>
@@ -79,6 +86,8 @@ const SinglesScoreKeeper = () => {
         style={styles.textarea}
         placeholder="Enter Team Name"
         placeholderTextColor='#003f5c'
+        onChangeText={(secondTeamName) =>setSecondTeamName(secondTeamName)}
+        value={secondTeamName}
         >
         </TextInput>
         <View style={styles.line}></View>
@@ -92,7 +101,7 @@ const SinglesScoreKeeper = () => {
           <Text style={styles.serve}>
             Serve:  
               <Text style={styles.exactServe}>
-                1/1
+                {serve}/2
               </Text>
           </Text>
         </View>
