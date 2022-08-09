@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SinglesDoubles from '../screens/SinglesDoubles';
 import DoublesScoreKeeper from "../screens/DoublesScoreKeeper";
+import RatingScreen from "../screens/RatingScreen.js";
 
 const TabNavigator = () => {
     const ProfileScreen = () => {
@@ -41,7 +42,7 @@ const TabNavigator = () => {
             })}
         >
             <Tab.Screen name='Home' component={HomePage} />
-            <Tab.Screen name='Profile' component={ProfileScreen} />
+            <Tab.Screen name='Profile' component={RatingScreen} />
             <Tab.Screen name='Play' component={SinglesDoubles} />
             <Tab.Screen name='DoublesScoreKeeper' component={DoublesScoreKeeper} />
         </Tab.Navigator>
