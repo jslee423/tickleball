@@ -1,23 +1,43 @@
 import { Text, View, StyleSheet, Image } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import SinglesPaddle from '../assets/images/singlesPaddle.png';
 import DoublesPaddle from '../assets/images/doublesPaddle.png';
+import { TouchableOpacity } from 'react-native';
 
-const SinglesDoubles = () => {
+const SinglesDoubles = ({navigation}) => {
+
+  // const navigation = useNavigation();
+  const singles = () => {
+    navigation.navigate('DoublesScoreKeeper')
+  }
+
+  const doubles = () => {
+    navigation.navigate('DoublesScoreKeeper')
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.view1}>
-        <Text style={styles.text1}>SINGLES</Text>
-        <Image
-          source={ SinglesPaddle }
-          style={styles.image}
-        />
-      </View>
+     
+        <View 
+          style={styles.view1}
+        >
+          <TouchableOpacity onPress={singles}>
+          <Text style={styles.text1}>SINGLES</Text>
+          <Image
+            source={ SinglesPaddle }
+            style={styles.image}
+          />
+          </TouchableOpacity>
+        </View>
+      
       <View style={styles.view2}>
+        <TouchableOpacity onPress={doubles}>
         <Text style={styles.text2}>DOUBLES</Text>
         <Image
           source={ DoublesPaddle }
           style={styles.image}
         />
+        </TouchableOpacity>
       </View>
     </View>
   )
