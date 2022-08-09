@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import Logo from '../assets/images/doublesPaddle.png';
 
-const LoginScreen = ({navigation}) => {
-    const [email, setEmail] = useState('');
+const RegisterScreen = () => {
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={Logo} />
+            <View style={styles.header}>
+                <Text style={styles.headerText}>Create Account</Text>
+            </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.input}
+                    placeholder='name'
+                    placeholderTextColor='#003f5c'
+                    onChangeText={(name) =>setName(name)}
+                />
+            </View>
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
@@ -21,33 +33,15 @@ const LoginScreen = ({navigation}) => {
                     style={styles.input}
                     placeholder='password'
                     placeholderTextColor='#003f5c'
-                    secureTextEntry={true}
-                    onChangeText={(password) => setPassword(password)}
+                    onChangeText={(password) =>setPassword(password)}
                 />
             </View>
-
-            <TouchableOpacity>
-                <Text style={styles.forgotPass}>Forgot Password?</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity
-                style={styles.loginBtn}
-                onPress={() => 
-                    navigation.reset({
-                        index: 0,
-                        routes: [{name: 'tab'}]
-                    })
-                }
+                style={styles.signUpBtn}
+                onPress={() => navigation.navigate('register')}
             >
-                <Text>LOGIN</Text>
+                <Text>SIGN UP</Text>
             </TouchableOpacity>
-
-            <View style={styles.row}>
-                <Text>Don't have an account? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('register')}>
-                    <Text style={styles.signUp}>Sign Up</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };
@@ -59,13 +53,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#fff'
     },
+    header: {
+        marginBottom: 20
+    },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 20
+    },
     logo: {
         height: 200,
         width: 200,
-        marginBottom: 30
+        marginBottom: 10
     },
     inputView: {
-        backgroundColor: '#d0f4de',
+        backgroundColor: '#fff',
+        borderStyle: 'solid',
+        borderColor: '#d0f4de',
+        borderWidth: 2,
         borderRadius: 30,
         width: '70%',
         height: 40,
@@ -75,27 +79,15 @@ const styles = StyleSheet.create({
     input: {
         flex: 1
     },
-    forgotPass: {
-        height: 30,
-        marginBottom: 30
-    },
-    loginBtn: {
+    signUpBtn: {
         width: '60%',
         borderRadius: 25,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
-        backgroundColor: '#fcf6bd'
-    },
-    row: {
-        flexDirection: 'row',
-        marginTop: 10
-    },
-    signUp: {
-        fontWeight: 'bold',
-        color: '#219ebc'
+        marginTop: 30,
+        backgroundColor: '#d0f4de'
     }
 });
 
-export default LoginScreen;
+export default RegisterScreen;
