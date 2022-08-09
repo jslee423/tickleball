@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../screens/HomePage";
 import { Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import SinglesDoubles from "../screens/SinglesDoubles";
+import SinglesDoubles from '../screens/SinglesDoubles';
 import DoublesScoreKeeper from "../screens/DoublesScoreKeeper";
 
 const TabNavigator = () => {
