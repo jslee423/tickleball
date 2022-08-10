@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, Button } from "react-native";
 import { useState } from 'react';
 
 const DoublesScoreKeeper = () => {
@@ -7,14 +7,27 @@ const DoublesScoreKeeper = () => {
   const [serve, setServe] = useState(1);
   const [teamName, setTeamName] = useState('');
   const [secondTeamName, setSecondTeamName] = useState('');
+  const [disable, setDisable] = useState(false);
+  const [disableTwo, setDisableTwo] = useState(true);
 
   const onPress = () => setCount(prevCount => prevCount + 1);
   const onPressSecond = () => setSecondCount(prevCount => prevCount + 1);
   const onServe = () => setServe(prevCount => prevCount + 1);
-  
 
   const resetServe = () => {
     setServe(1);
+  }
+
+  const onEndTurnBlue = (disabled) => {
+    setDisable(true);
+    setDisableTwo(false);
+    disabled = !disabled
+  }
+
+  const onEndTurnGreen = (disabled) => {
+    setDisable(false);
+    setDisableTwo(true);
+    disabled = !disabled
   }
 
   const resetScoring = () => {
@@ -73,13 +86,31 @@ const DoublesScoreKeeper = () => {
           </Text>
         </View>
         <View style={styles.btn}>
-          <TouchableOpacity onPress={onPress}>
-            <Text style={styles.scoreBtnActive}>SCORE</Text>
+          <TouchableOpacity 
+            disabled={disable} 
+            onPress={onPress}>
+            <Text style={styles.scoreBtnActive}>
+              SCORE
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={onServe}>
-            <Text style={styles.serveBtnActive}>SERVE</Text>
+          <TouchableOpacity 
+            disabled={disable}
+            onPress={onServe}>
+            <Text 
+              style={styles.serveBtnActive}
+              // {...disabled ?'Disabled':'Enabled'}
+            >
+              SERVE
+            </Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          onPress={onEndTurnBlue}
+          title='end turn'
+          style={styles.endTurn}
+        >
+          <Text>End Turn</Text>
+        </TouchableOpacity>
       </View>
       <View  style={styles.view2}>
       <TextInput 
@@ -106,13 +137,28 @@ const DoublesScoreKeeper = () => {
           </Text>
         </View>
         <View style={styles.btn}>
-          <TouchableOpacity onPress={onPressSecond}>
-            <Text style={styles.scoreBtnInactive}>SCORE</Text>
+          <TouchableOpacity 
+            disabled={disableTwo}
+            onPress={onPressSecond}>
+              <Text style={styles.scoreBtnInactive}>
+                SCORE
+              </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={onServe}>
-            <Text style={styles.serveBtnInactive}>SERVE</Text>
+          <TouchableOpacity 
+            disabled={disableTwo}
+            onPress={onServe}>
+              <Text style={styles.serveBtnInactive}>
+                SERVE
+              </Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          onPress={onEndTurnGreen}
+          title='end turn'
+          style={styles.endTurn}
+        >
+          <Text>End Turn</Text>
+        </TouchableOpacity>
       </View>
     </View>
     
@@ -208,7 +254,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     fontSize: 20,
     color: 'white',
-    backgroundColor: 'gray',
+    backgroundColor: '#38b000',
     paddingTop: '22%',
     paddingBottom: '22%',
     paddingLeft: '15%',
@@ -220,7 +266,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 20,
     color: 'white',
-    backgroundColor: 'gray',
+    backgroundColor: '#38b000',
     paddingTop: '22%',
     paddingBottom: '22%',
     paddingLeft: '15%',
@@ -228,6 +274,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     letterSpacing: 2
   },
+  endTurn: {
+    flexDirection: 'column',
+    backgroundColor: '#ffa9a3',
+    borderRadius: 10,
+    color: '#f34213',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 2,
+  }
 })
 
 export default DoublesScoreKeeper;

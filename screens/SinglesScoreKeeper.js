@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   view1: {
     height: 100,
     flex: 2,
-    backgroundColor: '#008bf8',
+    backgroundColor: '#fcf6bd',
     alignItems: 'center'
   },
   view2: {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     fontSize: 20,
     color: 'white',
-    backgroundColor: '#150578',
+    backgroundColor: '#fcf6bd',
     paddingTop: '22%',
     paddingBottom: '22%',
     paddingLeft: '15%',
