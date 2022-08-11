@@ -1,10 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } from "react-native";
+import Checkbox from "expo-checkbox";
+import * as SecureStore from 'expo-secure-store';
 import Logo from '../assets/images/doublesPaddle.png';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [remember, setRemember] = useState(false);
+
+    const handleLogin = () => {
+        const userInfo = {
+            email,
+            password,
+            remember
+        };
+        console.log(JSON.stringify(userInfo));
+
+        if (remember) {
+            SecureStore.setItemAsync(
+                'userinfo',
+                JSON.stringify({
+                    email,
+                    password
+                })
+            ).catch((error) => console.log('Could not save user info', error));
+        } else {
+            SecureStore.deleteItemAsync('userinfo').catch((error) => console.log('Could not delete user info', error));
+        }
+
+        navigation.reset({
+            index: 0,
+            routes: [{name: 'tab'}]
+        });
+    };
+
+    useEffect(() => {
+        SecureStore.getItemAsync('userinfo').then((userdata) => {
+            const userinfo = JSON.parse(userdata);
+
+            if (userinfo) {
+                setEmail(userinfo.email);
+                setPassword(userinfo.password);
+                setRemember(true);
+            }
+        });
+    }, []);
+
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={Logo} />
@@ -12,34 +54,43 @@ const LoginScreen = ({navigation}) => {
                 <TextInput
                     style={styles.input}
                     placeholder='email'
-                    placeholderTextColor='#003f5c'
-                    onChangeText={(email) =>setEmail(email)}
+                    placeholderTextColor='#ddddff'
+                    autoCapitalize='none'
+                    onChangeText={(email) => setEmail(email)}
+                    value={email}
                 />
             </View>
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
                     placeholder='password'
-                    placeholderTextColor='#003f5c'
+                    placeholderTextColor='#ddddff'
                     secureTextEntry={true}
+                    autoCapitalize='none'
                     onChangeText={(password) => setPassword(password)}
+                    value={password}
                 />
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('reset')}>
                 <Text style={styles.forgotPass}>Forgot Password?</Text>
             </TouchableOpacity>
 
+            <View style={styles.checkBoxView}>
+                <Checkbox
+                    style={styles.checkbox}
+                    value={remember}
+                    onValueChange={setRemember}
+                    color={remember ? '#04f167' : undefined}
+                />
+                <Text>Remember Me</Text>
+            </View>
+
             <TouchableOpacity
                 style={styles.loginBtn}
-                onPress={() => 
-                    navigation.reset({
-                        index: 0,
-                        routes: [{name: 'tab'}]
-                    })
-                }
+                onPress={() => handleLogin()}
             >
-                <Text>LOGIN</Text>
+                <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
 
             <View style={styles.row}>
@@ -65,8 +116,11 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     inputView: {
-        backgroundColor: '#d0f4de',
-        borderRadius: 30,
+        backgroundColor: '#fff',
+        borderStyle: 'solid',
+        borderColor: '#04f167',
+        borderWidth: 1,
+        borderRadius: 10,
         width: '70%',
         height: 40,
         marginBottom: 20,
@@ -86,7 +140,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
-        backgroundColor: '#fcf6bd'
+        backgroundColor: '#008bf8'
+    },
+    loginText: {
+        color: '#fff',
+        fontWeight: 'bold'
     },
     row: {
         flexDirection: 'row',
@@ -95,6 +153,13 @@ const styles = StyleSheet.create({
     signUp: {
         fontWeight: 'bold',
         color: '#219ebc'
+    },
+    checkBoxView: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    checkbox: {
+        marginHorizontal: 8
     }
 });
 
