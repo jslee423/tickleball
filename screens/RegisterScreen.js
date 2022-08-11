@@ -2,10 +2,24 @@ import { useState } from "react";
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import Logo from '../assets/images/doublesPaddle.png';
 
-const RegisterScreen = () => {
-    const [name, setName] = useState('');
+const RegisterScreen = ({navigation}) => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+
+    const handleRegister = () => {
+        const userInfo = {
+            firstName,
+            lastName,
+            password,
+            email
+        };
+        console.log(JSON.stringify(userInfo));
+
+        navigation.navigate('registerSuccess')
+    };
+
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={Logo} />
@@ -15,33 +29,56 @@ const RegisterScreen = () => {
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
-                    placeholder='name'
-                    placeholderTextColor='#003f5c'
-                    onChangeText={(name) =>setName(name)}
+                    placeholder='first name'
+                    placeholderTextColor='#ddddff'
+                    autoCapitalize='none'
+                    onChangeText={(name) =>setFirstName(name)}
+                    value={firstName}
+                />
+            </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.input}
+                    placeholder='last name'
+                    placeholderTextColor='#ddddff'
+                    autoCapitalize='none'
+                    onChangeText={(name) =>setLastName(name)}
+                    value={lastName}
                 />
             </View>
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
                     placeholder='email'
-                    placeholderTextColor='#003f5c'
+                    placeholderTextColor='#ddddff'
+                    autoCapitalize='none'
                     onChangeText={(email) =>setEmail(email)}
+                    value={email}
                 />
             </View>
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.input}
                     placeholder='password'
-                    placeholderTextColor='#003f5c'
+                    placeholderTextColor='#ddddff'
+                    autoCapitalize='none'
                     onChangeText={(password) =>setPassword(password)}
+                    value={password}
                 />
             </View>
             <TouchableOpacity
                 style={styles.signUpBtn}
-                onPress={() => navigation.navigate('register')}
+                onPress={() => handleRegister()}
             >
-                <Text>SIGN UP</Text>
+                <Text style={styles.signUpText}>SIGN UP</Text>
             </TouchableOpacity>
+
+            <View style={styles.row}>
+                <Text>Already have an account? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('login')}>
+                    <Text style={styles.login}>Login</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -68,9 +105,9 @@ const styles = StyleSheet.create({
     inputView: {
         backgroundColor: '#fff',
         borderStyle: 'solid',
-        borderColor: '#d0f4de',
-        borderWidth: 2,
-        borderRadius: 30,
+        borderColor: '#04f167',
+        borderWidth: 1,
+        borderRadius: 10,
         width: '70%',
         height: 40,
         marginBottom: 20,
@@ -86,7 +123,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 30,
-        backgroundColor: '#d0f4de'
+        backgroundColor: '#008bf8'
+    },
+    signUpText: {
+        color: '#fff',
+        fontWeight: 'bold'
+    },
+    row: {
+        flexDirection: 'row',
+        marginTop: 10
+    },
+    login: {
+        fontWeight: 'bold',
+        color: '#219ebc'
     }
 });
 

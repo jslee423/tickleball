@@ -1,21 +1,24 @@
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Logo from '../assets/images/doublesPaddle.png';
 
-const StartScreen = ({navigation}) => {
+const RegisterSuccessScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={Logo} />
+            <View style={styles.header}>
+                <Text style={styles.headerText}>Account Created!</Text>
+            </View>
+
             <TouchableOpacity
                 style={styles.loginBtn}
-                onPress={() => navigation.navigate('login')}
+                onPress={() => 
+                    navigation.reset({
+                        index: 0,
+                        routes: [{name: 'login'}]
+                    })
+                }
             >
                 <Text style={styles.loginText}>LOGIN</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.signUpBtn}
-                onPress={() => navigation.navigate('register')}
-            >
-                <Text style={styles.signUpText}>SIGN UP</Text>
             </TouchableOpacity>
         </View>
     );
@@ -28,10 +31,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#fff'
     },
+    header: {
+        marginBottom: 20
+    },
+    headerText: {
+        fontWeight: 'bold',
+        fontSize: 20
+    },
     logo: {
         height: 200,
         width: 200,
-        marginBottom: 30
+        marginBottom: 10
     },
     loginBtn: {
         width: '60%',
@@ -39,26 +49,13 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 30,
+        marginTop: 20,
         backgroundColor: '#008bf8'
     },
     loginText: {
         color: '#fff',
         fontWeight: 'bold'
-    },
-    signUpBtn: {
-        width: '60%',
-        borderRadius: 25,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 30,
-        backgroundColor: '#04f167',
-    },
-    signUpText: {
-        color: '#fff',
-        fontWeight: 'bold'
     }
 });
 
-export default StartScreen;
+export default RegisterSuccessScreen;
