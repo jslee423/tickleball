@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import Logo from '../assets/images/doublesPaddle.png';
+import TextInputField from "../components/TextInputField";
+import { emailValidator } from "../utils/InputValidators";
 
 const ResetPasswordScreen = ({navigation}) => {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState({value: '', error: ''});
 
     const handleReset = () => {
-        console.log('email:',email);
+        console.log('email:',email.value);
 
+        const emailError = emailValidator(email.value);
+        if (emailError) {
+            setEmail({...email, error: emailError});
+            return;
+        }
         navigation.navigate('resetSent')
     };
 
@@ -17,16 +24,14 @@ const ResetPasswordScreen = ({navigation}) => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>Reset Password</Text>
             </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='email'
-                    placeholderTextColor='#ddddff'
-                    autoCapitalize='none'
-                    onChangeText={(email) => setEmail(email)}
-                    value={email}
-                />
-            </View>
+            
+            <TextInputField
+                placeholder='email'
+                onChangeText={(email) => setEmail({value: email, error: ''})}
+                value={email.value}
+                error={!!email.error}
+                errorText={email.error}
+            />
             
             <Text style={styles.linkText}>You will receive an email with password reset link.</Text>
             
@@ -51,20 +56,6 @@ const styles = StyleSheet.create({
         height: 200,
         width: 200,
         marginBottom: 20
-    },
-    inputView: {
-        backgroundColor: '#fff',
-        borderStyle: 'solid',
-        borderColor: '#04f167',
-        borderWidth: 1,
-        borderRadius: 10,
-        width: '70%',
-        height: 40,
-        marginBottom: 10,
-        alignItems: 'center'
-    },
-    input: {
-        flex: 1
     },
     linkText: {
         fontSize: 10

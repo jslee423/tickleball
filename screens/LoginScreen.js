@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { View, Text, TextInput, Image, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Checkbox from "expo-checkbox";
 import * as SecureStore from 'expo-secure-store';
 import Logo from '../assets/images/doublesPaddle.png';
+import TextInputField from "../components/TextInputField";
+import { emailValidator, passwordValidator } from "../utils/InputValidators";
 
 const LoginScreen = ({navigation}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState({value: '', error: ''});
+    const [password, setPassword] = useState({value: '', error: ''});
     const [remember, setRemember] = useState(false);
 
     const handleLogin = () => {
         const userInfo = {
-            email,
-            password,
+            email: email.value,
+            password: password.value,
             remember
         };
         console.log(JSON.stringify(userInfo));
@@ -29,6 +31,13 @@ const LoginScreen = ({navigation}) => {
             SecureStore.deleteItemAsync('userinfo').catch((error) => console.log('Could not delete user info', error));
         }
 
+        const emailError = emailValidator(email.value);
+        const passwordError = passwordValidator(password.value);
+        if (emailError || passwordError) {
+            setEmail({...email, error: emailError});
+            setPassword({...password, error: passwordError})
+            return;
+        }
         navigation.reset({
             index: 0,
             routes: [{name: 'tab'}]
@@ -50,27 +59,22 @@ const LoginScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={Logo} />
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='email'
-                    placeholderTextColor='#ddddff'
-                    autoCapitalize='none'
-                    onChangeText={(email) => setEmail(email)}
-                    value={email}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='password'
-                    placeholderTextColor='#ddddff'
-                    secureTextEntry={true}
-                    autoCapitalize='none'
-                    onChangeText={(password) => setPassword(password)}
-                    value={password}
-                />
-            </View>
+
+            <TextInputField
+                placeholder='email'
+                onChangeText={(email) => setEmail({value: email, error: ''})}
+                value={email.value}
+                error={!!email.error}
+                errorText={email.error}
+            />
+            <TextInputField
+                placeholder='password'
+                onChangeText={(password) => setPassword({value: password, error: ''})}
+                secureTextEntry={true}
+                value={password.value}
+                error={!!password.error}
+                errorText={password.error}
+            />
 
             <TouchableOpacity onPress={() => navigation.navigate('reset')}>
                 <Text style={styles.forgotPass}>Forgot Password?</Text>
@@ -114,20 +118,6 @@ const styles = StyleSheet.create({
         height: 200,
         width: 200,
         marginBottom: 30
-    },
-    inputView: {
-        backgroundColor: '#fff',
-        borderStyle: 'solid',
-        borderColor: '#04f167',
-        borderWidth: 1,
-        borderRadius: 10,
-        width: '70%',
-        height: 40,
-        marginBottom: 20,
-        alignItems: 'center'
-    },
-    input: {
-        flex: 1
     },
     forgotPass: {
         height: 30,
