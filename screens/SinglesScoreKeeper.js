@@ -1,53 +1,61 @@
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { useState } from 'react';
+import TouchButton from "../components/Button";
+import EndTurnButton from "../components/EndTurnButton";
 
 const SinglesScoreKeeper = () => {
   const [count, setCount] = useState(0);
   const [secondCount, setSecondCount] = useState(0);
-  // const [serve, setServe] = useState(1);
+  const [teamName, setTeamName] = useState('');
+  const [secondTeamName, setSecondTeamName] = useState('');
+  const [disable, setDisable] = useState(false);
+  const [disableTwo, setDisableTwo] = useState(true);
 
-  const onPress = () => setCount(prevCount => prevCount + 1);
-  const onPressSecond = () => setSecondCount(prevCount => prevCount + 1);
-  // const onServe = () => setServe(prevCount => prevCount + 1);
+  const onScore = () => setCount(prevCount => prevCount + 1);
+  const onScoreSecond = () => setSecondCount(prevCount => prevCount + 1);
 
-  // const resetServe = () => {
-  //   setServe(1);
-  // }
+  const onEndTurnBlue = () => {
+    setDisable(true);
+    setDisableTwo(false);
+  }
+
+  const onEndTurnGreen = () => {
+    setDisable(false);
+    setDisableTwo(true);
+  }
 
   const resetScoring = () => {
     setCount(0);
     setSecondCount(0);
-    // setServe(1);
+    setTeamName('');
+    setSecondTeamName('');
+    setDisable(false);
+    setDisableTwo(true);
   }
 
   if (count < 11) {
     count + 1
   } else if (count > 11) {
-    Alert.alert('Congrats, you are victorious!')
+    Alert.alert('Congrats, ' + teamName + ' you are victorious!')
     resetScoring();
   }
 
   if (secondCount < 11) {
     secondCount + 1
   } else if (secondCount > 11) {
-    Alert.alert('Congrats, you are victorious!')
+    Alert.alert('Congrats, '+ secondTeamName + ' you are victorious!')
     resetScoring();
   }
-
-  // if (serve === 1) {
-  //   serve + 1
-  // } else if (serve > 2) {
-  //   resetServe();
-  // }
   
-
-  return(
+  return (
     <View style={styles.container}>
       <View style={styles.view1}>
-      <TextInput 
-        style={styles.textarea}
-        placeholder="Enter Team Name"
-        placeholderTextColor='#003f5c'
+        <TextInput 
+          style={styles.textarea}
+          placeholder="Enter Team Name"
+          placeholderTextColor='white'
+          onChangeText={(teamName) =>setTeamName(teamName)}
+          value={teamName}
         >
         </TextInput>
         <View style={styles.line}></View>
@@ -55,7 +63,7 @@ const SinglesScoreKeeper = () => {
           <Text style={styles.score}>
             Score: 
             <Text style={styles.exactScore}>
-               {count} - {secondCount}
+              {count} - {secondCount}
             </Text>
           </Text>
           <Text style={styles.serve}>
@@ -63,47 +71,43 @@ const SinglesScoreKeeper = () => {
               <Text style={styles.exactServe}>
                 1/1
               </Text>
-          </Text>
-        </View>
-        <View style={styles.btn}>
-          <TouchableOpacity onPress={onPress}>
-            <Text style={styles.scoreBtnActive}>SCORE</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onServe}>
-            <Text style={styles.serveBtnActive}>SERVE</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View  style={styles.view2}>
-      <TextInput 
-        style={styles.textarea}
-        placeholder="Enter Team Name"
-        placeholderTextColor='#003f5c'
-        >
-        </TextInput>
-        <View style={styles.line}></View>
-        <View style={styles.subheader}>
-          <Text style={styles.score}>
-            Score: 
-              <Text style={styles.exactScore}>
-                {secondCount} - {count}
-              </Text>
             </Text>
-          <Text style={styles.serve}>
-            Serve:  
-              <Text style={styles.exactServe}>
-                1/1
+          </View>
+          <View style={styles.btn}>
+            <TouchButton disable={disable} handleOnPress={onScore} name='SCORE' />
+            <TouchButton disable={disable} name='SERVE'/>
+          </View>
+          <EndTurnButton handleOnPress={onEndTurnBlue} name='Next Teams Serve'/>
+        </View>
+        <View  style={styles.view2}>
+        <TextInput 
+          style={styles.textarea}
+          placeholder="Enter Team Name"
+          placeholderTextColor='white'
+          onChangeText={(secondTeamName) =>setSecondTeamName(secondTeamName)}
+          value={secondTeamName}
+          >
+          </TextInput>
+          <View style={styles.line}></View>
+          <View style={styles.subheader}>
+            <Text style={styles.score}>
+              Score: 
+                <Text style={styles.exactScore}>
+                  {secondCount} - {count}
+                </Text>
               </Text>
-          </Text>
-        </View>
-        <View style={styles.btn}>
-          <TouchableOpacity onPress={onPressSecond}>
-            <Text style={styles.scoreBtnInactive}>SCORE</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onServe}>
-            <Text style={styles.serveBtnInactive}>SERVE</Text>
-          </TouchableOpacity>
-        </View>
+            <Text style={styles.serve}>
+              Serve:  
+                <Text style={styles.exactServe}>
+                  1/1
+                </Text>
+            </Text>
+          </View>
+          <View style={styles.btn}>
+            <TouchButton disable={disableTwo} handleOnPress={onScoreSecond} name='SCORE' />
+            <TouchButton disable={disableTwo} name='SERVE' />
+          </View>
+          <EndTurnButton handleOnPress={onEndTurnGreen} name='Next Teams Serve'/>
       </View>
     </View>
     
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
   view1: {
     height: 100,
     flex: 2,
-    backgroundColor: '#fcf6bd',
+    backgroundColor: '#008bf8',
     alignItems: 'center'
   },
   view2: {
@@ -170,55 +174,7 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     marginTop: "1%"
-  },
-  scoreBtnActive: {
-    marginLeft: 0,
-    fontSize: 20,
-    color: 'white',
-    backgroundColor: '#fcf6bd',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
-    borderRadius: 30,
-    letterSpacing: 2
-  },
-  serveBtnActive: {
-    marginLeft: 10,
-    fontSize: 20,
-    color: 'white',
-    backgroundColor: '#150578',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
-    borderRadius: 30,
-    letterSpacing: 2
-  },
-  scoreBtnInactive: {
-    marginLeft: 0,
-    fontSize: 20,
-    color: 'white',
-    backgroundColor: 'gray',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
-    borderRadius: 30,
-    letterSpacing: 2
-  },
-  serveBtnInactive: {
-    marginLeft: 10,
-    fontSize: 20,
-    color: 'white',
-    backgroundColor: 'gray',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
-    borderRadius: 30,
-    letterSpacing: 2
-  },
+  }
 })
 
-export default DoublesScoreKeeper;
+export default SinglesScoreKeeper;

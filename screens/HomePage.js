@@ -16,12 +16,12 @@ const HomePage = () => {
         source={ PB1 }
         style={styles.image}
       />
-      <Text>Find out what your pickleball rating is!</Text>
+      <Text>Find out what your pickleball rating is! And rate others! </Text>
       <Image 
         source={ PB2 }
         style={styles.image}
       />
-      <Text>Shop the paddles that we recommend!</Text>
+      <Text>Try our score keeper by pressing Play on the tab navigator!</Text>
     </View>
   )
 };

@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { useState } from 'react';
-import TouchButton from "./Button";
-import EndTurnButton from "./EndTurnButton";
+import TouchButton from "../components/Button";
+import EndTurnButton from "../components/EndTurnButton";
 
 const DoublesScoreKeeper = () => {
   const [count, setCount] = useState(0);
