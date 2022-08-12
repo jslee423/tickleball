@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { useState } from 'react';
 import TouchButton from "../components/Button";
 import EndTurnButton from "../components/EndTurnButton";
+import EnterTeamName from "../components/EnterTeamName";
 
 const SinglesScoreKeeper = () => {
   const [count, setCount] = useState(0);
@@ -50,14 +51,10 @@ const SinglesScoreKeeper = () => {
   return (
     <View style={styles.container}>
       <View style={styles.view1}>
-        <TextInput 
-          style={styles.textarea}
-          placeholder="Enter Team Name"
-          placeholderTextColor='white'
+      <EnterTeamName 
           onChangeText={(teamName) =>setTeamName(teamName)}
-          value={teamName}
-        >
-        </TextInput>
+          value={teamName} 
+        />
         <View style={styles.line}></View>
         <View style={styles.subheader}>
           <Text style={styles.score}>
@@ -80,14 +77,10 @@ const SinglesScoreKeeper = () => {
           <EndTurnButton handleOnPress={onEndTurnBlue} name='Next Teams Serve'/>
         </View>
         <View  style={styles.view2}>
-        <TextInput 
-          style={styles.textarea}
-          placeholder="Enter Team Name"
-          placeholderTextColor='white'
-          onChangeText={(secondTeamName) =>setSecondTeamName(secondTeamName)}
-          value={secondTeamName}
-          >
-          </TextInput>
+        <EnterTeamName 
+          onChangeText={(secondTeamName) =>setTeamName(secondTeamName)}
+          value={secondTeamName} 
+        />
           <View style={styles.line}></View>
           <View style={styles.subheader}>
             <Text style={styles.score}>
