@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { useState } from 'react';
 import TouchButton from "../components/Button";
 import EndTurnButton from "../components/EndTurnButton";
+import EnterTeamName from "../components/EnterTeamName";
 
 const DoublesScoreKeeper = () => {
   const [count, setCount] = useState(0);
@@ -62,15 +63,11 @@ const DoublesScoreKeeper = () => {
   
   return (
     <View style={styles.container}>
-      <View style={styles.view1}>
-        <TextInput 
-          style={styles.textarea}
-          placeholder="Enter Team Name"
-          placeholderTextColor='white'
+      <View style={styles.team1View}>
+        <EnterTeamName 
           onChangeText={(teamName) =>setTeamName(teamName)}
-          value={teamName}
-        >
-        </TextInput>
+          value={teamName} 
+        />
         <View style={styles.line}></View>
         <View style={styles.subheader}>
           <Text style={styles.score}>
@@ -92,15 +89,11 @@ const DoublesScoreKeeper = () => {
           </View>
           <EndTurnButton handleOnPress={onEndTurnBlue} name='Next Teams Serve'/>
         </View>
-        <View  style={styles.view2}>
-        <TextInput 
-          style={styles.textarea}
-          placeholder="Enter Team Name"
-          placeholderTextColor='white'
-          onChangeText={(secondTeamName) =>setSecondTeamName(secondTeamName)}
-          value={secondTeamName}
-          >
-          </TextInput>
+        <View  style={styles.team2View}>
+        <EnterTeamName 
+          onChangeText={(secondTeamName) =>setTeamName(secondTeamName)}
+          value={secondTeamName} 
+        />
           <View style={styles.line}></View>
           <View style={styles.subheader}>
             <Text style={styles.score}>
@@ -138,13 +131,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
   },
-  view1: {
+  team1View: {
     height: 100,
     flex: 2,
     backgroundColor: '#008bf8',
     alignItems: 'center'
   },
-  view2: {
+  team2View: {
     height: 100,
     backgroundColor: '#04f167',
     flex: 2,
@@ -178,14 +171,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white'
   },
-  textarea: {
-    height: '15%',
-    width: '80%',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    letterSpacing: 2
-  },
+  // teamEnterName: {
+  //   height: '15%',
+  //   width: '80%',
+  //   fontSize: 20,
+  //   textAlign: 'center',
+  //   fontWeight: 'bold',
+  //   letterSpacing: 2
+  // },
   btn: {
     flexDirection: 'row',
     marginTop: "1%"
