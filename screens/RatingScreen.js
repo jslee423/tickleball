@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Rating } from 'react-native-elements';
-import { Text, TextInput, View, StyleSheet, } from 'react-native';
+import { Text, TextInput, View, StyleSheet} from 'react-native';
 import pbTrans from '../assets/images/pbTrans.png';
+import pbFill from '../assets/images/pbFill.png';
+import Stars from 'react-native-stars';
+import TextInputField from '../components/TextInputField';
 
 
 const RatingScreen = () => {
@@ -22,7 +25,7 @@ const RatingScreen = () => {
                     textAlign='center'
                 />
             </View>
-                <Rating
+                {/* <Rating
                     showRating
                     type='custom'
                     ratingImage={pbTrans}
@@ -32,7 +35,18 @@ const RatingScreen = () => {
                     imageSize={40}
                     alignItems='flex-start'
                     style={{paddingVertical:5}}    
+                /> */}
+            <View style={styles.ratingView}>
+                <Stars
+                    rating={3}
+                    count={5}
+                    starSize={40}
+                    // half={true}
+                    fullStar={pbFill}
+                    emptyStar={pbTrans}
+                    // halfStar={<Icon name={'star-half'} style={[styles.myStarStyle]}/>}
                 />
+            </View>
 
             <View style={styles.inputView}>
                 <TextInput
@@ -45,7 +59,7 @@ const RatingScreen = () => {
 
                 />
             </View>
-                <Rating
+                {/* <Rating
                     showRating
                     type='custom'
                     ratingImage={pbTrans}
@@ -55,7 +69,18 @@ const RatingScreen = () => {
                     imageSize={40}
                     alignItems='flex-start'
                     style={{paddingVertical:5}}
+                /> */}
+            <View style={styles.ratingView}>
+                <Stars
+                    rating={3}
+                    count={5}
+                    starSize={40}
+                    // half={true}
+                    fullStar={pbFill}
+                    emptyStar={pbTrans}
+                    // halfStar={<Icon name={'star-half'} style={[styles.myStarStyle]}/>}
                 />
+            </View>
 
             <View style={styles.inputView}>
                 <TextInput
@@ -66,7 +91,7 @@ const RatingScreen = () => {
                     textAlign='center'
                 />
             </View>
-                <Rating
+                {/* <Rating
                     showRating
                     type='custom'
                     ratingImage={pbTrans}
@@ -76,7 +101,19 @@ const RatingScreen = () => {
                     imageSize={40}
                     alignItems='flex-start'
                     style={{paddingVertical:5}}
+                /> */}
+            <View style={styles.ratingView}>
+                <Stars
+                    rating={3}
+                    count={5}
+                    starSize={40}
+                    // half={true}
+                    fullStar={pbFill}
+                    emptyStar={pbTrans}
+                    // halfStar={<Icon name={'star-half'} style={[styles.myStarStyle]}/>}
                 />
+            </View>
+
             <View style={styles.inputView}>
                 <TextInput
                     styles={styles.input}
@@ -86,7 +123,7 @@ const RatingScreen = () => {
                     textAlign='center'
                 />
             </View>
-                <Rating
+                {/* <Rating
                     showRating
                     type='custom'
                     ratingImage={pbTrans}
@@ -96,7 +133,18 @@ const RatingScreen = () => {
                     imageSize={40}
                     alignItems='flex-start'
                     style={{paddingVertical:5}}
+                /> */}
+            <View style={styles.ratingView}>
+                <Stars
+                    rating={3}
+                    count={5}
+                    starSize={40}
+                    // half={true}
+                    fullStar={pbFill}
+                    emptyStar={pbTrans}
+                    // halfStar={<Icon name={'star-half'} style={[styles.myStarStyle]}/>}
                 />
+            </View>
         </View>
 
     )
@@ -119,7 +167,9 @@ const styles = StyleSheet.create({
     },
     input: { 
         flex: 1
-
+    },
+    ratingView: {
+        marginBottom: 20
     }
 })
 

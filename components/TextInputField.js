@@ -1,5 +1,4 @@
 import { View, TextInput, StyleSheet, Text } from "react-native";
-import { Rating } from "react-native-ratings";
 
 const TextInputField = ({placeholder, onChangeText, value, secureTextEntry, errorText}) => {
     return (
