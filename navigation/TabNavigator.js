@@ -3,8 +3,9 @@ import HomePage from "../screens/HomePage";
 import { Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SinglesDoubles from '../screens/SinglesDoubles';
-import DoublesScoreKeeper from "../screens/DoublesScoreKeeper";
+// import DoublesScoreKeeper from "../screens/DoublesScoreKeeper";
 import RatingScreen from "../screens/RatingScreen.js";
+import StackNavigatorScoring from "./StackNavigatorScoring";
 
 const TabNavigator = () => {
     const ProfileScreen = () => {
@@ -25,13 +26,14 @@ const TabNavigator = () => {
     
                 if (route.name === 'Home') {
                     iconName = focused ? 'home' : 'home';
+                } else if (route.name === 'Rating') {
+                    iconName = focused ? 'user-circle-o' : 'user-circle-o';
                 } else if (route.name === 'Play') {
-                    iconName = focused ? 'sliders' : 'sliders';
-                } else if (route.name === 'Profile') {
-                    iconName = focused ? 'user-circle-o' : 'user-circle-o';
-                } else if (route.name === 'DoublesScoreKeeper') {
-                    iconName = focused ? 'user-circle-o' : 'user-circle-o';
+                    iconName = focused ? 'play' : 'play';
                 }
+                // } else if (route.name === 'DoublesScoreKeeper') {
+                //     iconName = focused ? 'user-circle-o' : 'user-circle-o';
+                // }
 
                 // You can return any component that you like here!
                 // return <Ionicons name={iconName} size={size} color={color} />;
@@ -42,9 +44,9 @@ const TabNavigator = () => {
             })}
         >
             <Tab.Screen name='Home' component={HomePage} />
-            <Tab.Screen name='Profile' component={RatingScreen} />
-            <Tab.Screen name='Play' component={SinglesDoubles} />
-            <Tab.Screen name='DoublesScoreKeeper' component={DoublesScoreKeeper} />
+            <Tab.Screen name='Play' component={StackNavigatorScoring} />
+            <Tab.Screen name='Rating' component={RatingScreen} />
+            {/* <Tab.Screen name='DoublesScoreKeeper' component={DoublesScoreKeeper} /> */}
         </Tab.Navigator>
     );
 };

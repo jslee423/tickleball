@@ -8,7 +8,7 @@ const SinglesDoubles = ({navigation}) => {
 
   // const navigation = useNavigation();
   const singles = () => {
-    navigation.navigate('DoublesScoreKeeper')
+    navigation.navigate('SinglesScoreKeeper')
   }
 
   const doubles = () => {
