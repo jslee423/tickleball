@@ -181,8 +181,10 @@ const styles = StyleSheet.create({
   textarea: {
     height: '15%',
     width: '80%',
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    letterSpacing: 2
   },
   btn: {
     flexDirection: 'row',
