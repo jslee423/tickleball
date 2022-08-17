@@ -1,47 +1,86 @@
 import React from "react";
-import { Text, StyleSheet, View, Image } from 'react-native';
-import PB1 from '../assets/images/pb1.png';
-import PB2 from '../assets/images/pb2.png';
-import PB3 from '../assets/images/pb3.png';
+import { Text, StyleSheet, View, Image, PanResponder, Alert } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import { useRef } from 'react';
+import Logo from '../assets/images/doublesPaddle.png';
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
+
+  const view = useRef();
+
+  const playScreen = () => {
+    navigation.navigate('SinglesDoubles')
+  }
+
+  const isLeftSwipe = ({ dx }) => dx < - 200;
+  const isRightSwipe = ({ dx }) => dx > + 200;
+
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      view.current
+        .rubberBand(1000)
+        .then((endState) => 
+          console.log(endState.finished ? 'finished' : 'canceled')
+        );
+    },
+
+    onPanResponderEnd: (e, gestureState) => {
+      console.log('pan responder end', gestureState);
+      if (isLeftSwipe(gestureState)) {
+        Alert.alert(
+          'Would you like us to help you keep score?',
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            },
+            {
+              text: 'Ok',
+              onPress: () => props.playScreen(e)
+            }
+          ]
+        );
+      } else if (isRightSwipe(gestureState)) {
+        playScreen()
+      }
+    }
+  })
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}></Text>
-      <Image 
-        source={ PB3 }
-        style={styles.imageHeader}
-      />
-      <Image 
-        source={ PB1 }
-        style={styles.image}
-      />
-      <Text>Find out what your pickleball rating is! And rate others! </Text>
-      <Image 
-        source={ PB2 }
-        style={styles.image}
-      />
-      <Text>Try our score keeper by pressing Play on the tab navigator!</Text>
-    </View>
+    <Animatable.View
+      animation='fadeInDownBig'
+      duration={2000}
+      delay={1000}
+      ref={view}
+      {...panResponder.panHandlers}
+    >
+      <View style={styles.container}>
+        <Text style={styles.text}>PBJ</Text>
+        <Image 
+          source={ Logo }
+          style={styles.imageHeader}
+        />
+        <Text style={styles.text}>play</Text> 
+      </View>
+    </Animatable.View>
   )
 };
 
 const styles = StyleSheet.create({
   image: {
     resizeMode: 'contain',
-    height: 200,
-    borderRadius: 50
+    height: 400
   },
   imageHeader: {
     resizeMode: 'contain',
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 15
+    height: 300,
+    marginTop: "150%"
   },
 
   text: {
     fontSize: 30,
-    marginBottom: 40
+    marginBottom: 10
     
   },
   container: {
