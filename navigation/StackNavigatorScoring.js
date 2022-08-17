@@ -10,9 +10,9 @@ const StackNavigatorScoring = () => {
     return (
         <NavigationContainer independent={true}>
             <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Play '>
-                <Stack.Screen name='Play' component={SinglesDoubles} />
+                {/* <Stack.Screen name='Play' component={SinglesDoubles} />
                 <Stack.Screen name='DoublesScoreKeeper' component={DoublesScoreKeeper} />
-                <Stack.Screen name='SinglesScoreKeeper' component={SinglesScoreKeeper} />
+                <Stack.Screen name='SinglesScoreKeeper' component={SinglesScoreKeeper} /> */}
             </Stack.Navigator>
         </NavigationContainer>
     );
