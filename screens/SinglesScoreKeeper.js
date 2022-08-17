@@ -110,6 +110,7 @@ const SinglesScoreKeeper = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 50
   },
   text: {
     textAlign: 'center',
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   },
   subheader: {
     flexDirection: 'row',
-    marginBottom: 15
+    marginBottom: 5
   },
   line: {
     backgroundColor: 'white',

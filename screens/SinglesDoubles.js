@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 1,
     letterSpacing: 2,
-    fontSize: 20,
+    fontSize: 30,
     color: 'black',
     paddingTop: 130
   },
@@ -59,23 +59,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 1,
     letterSpacing: 2,
-    fontSize: 20,
+    fontSize: 30,
     color: 'black',
     paddingTop: 130
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 150,
+    width: 150,
     marginBottom: 70,
   },
   view1: {
-    height: 100,
+    height: 150,
     flex: 2,
     backgroundColor: '#008bf8',
     alignItems: 'center'
   },
   view2: {
-    height: 100,
+    height: 150,
     backgroundColor: '#04f167',
     flex: 2,
     alignItems: 'center'

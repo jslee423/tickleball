@@ -8,14 +8,6 @@ const EnterTeamName = ({onChangeText, value}) => (
     onChangeText={onChangeText}
     value={value}
   />
- 
-  // <TouchableOpacity
-  //   onPress={handleOnPress}
-  //   title={name}
-  //   style={styles.endTurn}
-  // >
-  //   <Text>{name}</Text>
-  // </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
@@ -25,7 +17,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
-    letterSpacing: 2
+    letterSpacing: 3
   }
 })
 

@@ -123,6 +123,7 @@ const DoublesScoreKeeper = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 50
   },
   text: {
     textAlign: 'center',
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     height: 100,
     flex: 2,
     backgroundColor: '#008bf8',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   team2View: {
     height: 100,
@@ -145,7 +146,8 @@ const styles = StyleSheet.create({
   },
   subheader: {
     flexDirection: 'row',
-    marginBottom: 15
+    marginBottom: 5,
+    letterSpacing: 3
   },
   line: {
     backgroundColor: 'white',
@@ -156,12 +158,14 @@ const styles = StyleSheet.create({
   score: {
     textAlign: 'left',
     marginRight: 10,
-    fontSize: 20
+    fontSize: 20,
+    letterSpacing: 2
   },
   serve: {
     textAlign: 'right',
-    marginLeft: 80,
-    fontSize: 20
+    marginLeft: 65,
+    fontSize: 20,
+    letterSpacing: 2
   },
   exactScore: {
     fontSize: 25,
@@ -171,14 +175,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white'
   },
-  // teamEnterName: {
-  //   height: '15%',
-  //   width: '80%',
-  //   fontSize: 20,
-  //   textAlign: 'center',
-  //   fontWeight: 'bold',
-  //   letterSpacing: 2
-  // },
   btn: {
     flexDirection: 'row',
     marginTop: "1%"

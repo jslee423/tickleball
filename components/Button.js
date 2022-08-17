@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     backgroundColor: '#150578',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
+    paddingTop: '26%',
+    paddingBottom: '26%',
+    paddingLeft: '13%',
+    paddingRight: '13%',
     borderRadius: 30,
-    letterSpacing: 2
+    letterSpacing: 5
   },
   scoreBtnInactive: {
     marginLeft: 3,
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#dee2e6',
     backgroundColor: '#6c757d',
-    paddingTop: '22%',
-    paddingBottom: '22%',
-    paddingLeft: '15%',
-    paddingRight: '15%',
+    paddingTop: '26%',
+    paddingBottom: '26%',
+    paddingLeft: '13%',
+    paddingRight: '13%',
     borderRadius: 30,
-    letterSpacing: 2
+    letterSpacing: 5
   },
 })
 
