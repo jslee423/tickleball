@@ -123,7 +123,7 @@ const DoublesScoreKeeper = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50
+    backgroundColor: '#008bf8'
   },
   text: {
     textAlign: 'center',
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: '#008bf8',
     alignItems: 'center',
+    marginTop: 30
   },
   team2View: {
     height: 100,
