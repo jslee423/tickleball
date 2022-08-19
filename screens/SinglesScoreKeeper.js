@@ -51,7 +51,7 @@ const SinglesScoreKeeper = () => {
   return (
     <View style={styles.container}>
       <View style={styles.view1}>
-      <EnterTeamName 
+        <EnterTeamName 
           onChangeText={(teamName) =>setTeamName(teamName)}
           value={teamName} 
         />
@@ -68,49 +68,48 @@ const SinglesScoreKeeper = () => {
               <Text style={styles.exactServe}>
                 1/1
               </Text>
-            </Text>
-          </View>
-          <View style={styles.btn}>
-            <TouchButton disable={disable} handleOnPress={onScore} name='SCORE' />
-            <TouchButton disable={disable} name='SERVE'/>
-          </View>
-          <EndTurnButton handleOnPress={onEndTurnBlue} name='Next Teams Serve'/>
+          </Text>
         </View>
-        <View  style={styles.view2}>
+        <View style={styles.btn}>
+          <TouchButton disable={disable} handleOnPress={onScore} name='SCORE' />
+          <TouchButton disable={disable} name='SERVE'/>
+        </View>
+        <EndTurnButton handleOnPress={onEndTurnBlue} name='Next Teams Serve'/>
+      </View>
+      <View  style={styles.view2}>
         <EnterTeamName 
           onChangeText={(secondTeamName) =>setTeamName(secondTeamName)}
           value={secondTeamName} 
         />
-          <View style={styles.line}></View>
-          <View style={styles.subheader}>
-            <Text style={styles.score}>
-              Score: 
-                <Text style={styles.exactScore}>
-                  {secondCount} - {count}
-                </Text>
-              </Text>
-            <Text style={styles.serve}>
-              Serve:  
-                <Text style={styles.exactServe}>
-                  1/1
-                </Text>
+        <View style={styles.line}/>
+        <View style={styles.subheader}>
+          <Text style={styles.score}>
+            Score: 
+            <Text style={styles.exactScore}>
+              {secondCount} - {count}
             </Text>
-          </View>
-          <View style={styles.btn}>
-            <TouchButton disable={disableTwo} handleOnPress={onScoreSecond} name='SCORE' />
-            <TouchButton disable={disableTwo} name='SERVE' />
-          </View>
-          <EndTurnButton handleOnPress={onEndTurnGreen} name='Next Teams Serve'/>
+          </Text>
+          <Text style={styles.serve}>
+            Serve:  
+            <Text style={styles.exactServe}>
+              1/1
+            </Text>
+          </Text>
+        </View>
+        <View style={styles.btn}>
+          <TouchButton disable={disableTwo} handleOnPress={onScoreSecond} name='SCORE' />
+          <TouchButton disable={disableTwo} name='SERVE' />
+        </View>
+        <EndTurnButton handleOnPress={onEndTurnGreen} name='Next Teams Serve'/>
       </View>
     </View>
-    
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50
+    backgroundColor: '#008bf8'
   },
   text: {
     textAlign: 'center',
@@ -123,7 +122,8 @@ const styles = StyleSheet.create({
     height: 100,
     flex: 2,
     backgroundColor: '#008bf8',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 30
   },
   view2: {
     height: 100,
