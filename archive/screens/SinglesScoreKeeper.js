@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { useState } from 'react';
 import TouchButton from "../components/Button";
 import EndTurnButton from "../components/EndTurnButton";
@@ -78,7 +78,7 @@ const SinglesScoreKeeper = () => {
       </View>
       <View  style={styles.view2}>
         <EnterTeamName 
-          onChangeText={(secondTeamName) =>setSecondTeamName(secondTeamName)}
+          onChangeText={(secondTeamName) =>setTeamName(secondTeamName)}
           value={secondTeamName} 
         />
         <View style={styles.line}/>

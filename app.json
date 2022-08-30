@@ -2,12 +2,12 @@
   "expo": {
     "name": "tickleball",
     "slug": "tickleball",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/doublesPaddle.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/splashPaddles.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-iconPaddles.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jslee423.tickleball2",
+      "versionCode": 2
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/doublesPaddle.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9751e7db-5d1b-4240-9bc8-29c2d091520d"
+      }
     }
   }
 }

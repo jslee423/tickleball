@@ -1,16 +1,18 @@
 import { Text, View, StyleSheet, Image } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import SinglesPaddle from '../assets/images/singlesPaddle.png';
 import DoublesPaddle from '../assets/images/doublesPaddle.png';
 import { TouchableOpacity } from 'react-native';
 
 const SinglesDoubles = ({navigation}) => {
 
+  // const navigation = useNavigation();
   const singles = () => {
-    navigation.navigate('singleGame')
+    navigation.navigate('SinglesScoreKeeper')
   }
 
   const doubles = () => {
-    navigation.navigate('doubleGame')
+    navigation.navigate('DoublesScoreKeeper')
   }
 
   return (
