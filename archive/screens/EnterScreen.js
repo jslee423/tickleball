@@ -6,6 +6,10 @@ import Logo from '../assets/images/doublesPaddle.png';
 const EnterScreen = ({navigation}) => {
     const view = useRef();
 
+    const playScreen = () => {
+        navigation.navigate('SinglesDoubles')
+    }
+
     const isLeftSwipe = ({ dx }) => dx < - 200;
     const isRightSwipe = ({ dx }) => dx > + 200;
 
